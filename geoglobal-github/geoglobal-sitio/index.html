@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geo Global Solutions LLC | Global Trade, Distribution &amp; Wholesale</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="Geo Global Solutions LLC connects brands across the United States and ships from the USA to Venezuela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#FFFFFF;color:#0B1B33}
+a{color:#0B1B33}a:hover{color:#1D4ED8}
+html{scroll-behavior:smooth}
+*{box-sizing:border-box}
+.ggs-slide{position:absolute;inset:-4%;background-size:cover;background-repeat:no-repeat;will-change:transform}
+.ggs-s1{background-image:url(avion.jpg);background-position:center center;animation:ggsZoom 16s linear infinite}
+@keyframes ggsZoom{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes ggsUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ggsMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ggsPulse{0%{box-shadow:0 0 0 0 rgba(200,16,46,.55)}70%{box-shadow:0 0 0 18px rgba(200,16,46,0)}100%{box-shadow:0 0 0 0 rgba(200,16,46,0)}}
+@keyframes ggsPulseW{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}70%{box-shadow:0 0 0 18px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+@keyframes ggsRing{0%{box-shadow:0 0 0 0 rgba(245,183,0,.6)}80%,100%{box-shadow:0 0 0 14px rgba(245,183,0,0)}}
+@keyframes ggsDrive{from{transform:translateX(-160px)}to{transform:translateX(calc(100vw + 40px))}}
+@keyframes ggsBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes ggsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.ggs-up{opacity:0;animation:ggsUp .9s cubic-bezier(.2,.7,.2,1) forwards}
+.ggs-d1{animation-delay:.15s}.ggs-d2{animation-delay:.35s}.ggs-d3{animation-delay:.55s}
+.ggs-marquee{display:flex;width:max-content;animation:ggsMarquee 35s linear infinite}
+.ggs-pulse{animation:ggsPulse 2.2s ease-out infinite}
+.ggs-pulse-w{animation:ggsPulseW 2.2s ease-out infinite}
+.ggs-ring{animation:ggsRing 2.4s ease-out infinite}
+.ggs-drive{animation:ggsDrive 14s linear infinite}
+.ggs-bob{animation:ggsBob 3s ease-in-out infinite}
+.ggs-float{animation:ggsFloat 4s ease-in-out infinite}
+@media (max-width: 900px){.ggs-heroin{padding-top:320px !important}}
+.ggs-aboutimg{background:#0B1B33 url(almacen.jpg) center/cover no-repeat}
+.ggs-bg-wwd{background:#0B1B33 url(fondo1.jpg) center/cover no-repeat}
+.ggs-bg-port{background:#0B1B33 url(puerto.jpg) center/cover no-repeat}
+.ggs-bg-mission{background:#0B1B33 url(fondo2.jpg) center/cover no-repeat}
+.ggs-bg-food{background:#0B1B33 url(alimentos.jpg) center/cover no-repeat}
+.ggs-bg-plane{background:#C8102E url(almacen2.jpg) center/cover no-repeat}
+.ggs-bg-truck{background:#0B1B33 url(camion.jpg) center 60%/cover no-repeat}
+.ggs-lift{transition:transform .3s ease,box-shadow .3s ease}
+.ggs-lift:hover{transform:translateY(-8px);box-shadow:0 28px 50px rgba(11,27,51,.22)}
+.ggs-chip{transition:background .25s,color .25s,transform .25s}
+.ggs-chip:hover{background:#0B1B33;color:#FFFFFF;transform:scale(1.05)}
+@media (prefers-reduced-motion: reduce){.ggs-s1,.ggs-marquee,.ggs-pulse,.ggs-pulse-w,.ggs-ring,.ggs-drive,.ggs-bob,.ggs-float{animation:none}.ggs-up{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<template id="tpl">
+<div style="position: relative; width: 100%; background: #FFFFFF">
+
+  <!-- HEADER -->
+  <header id="home" style="position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: linear-gradient(180deg, rgba(11,27,51,0.65) 0%, rgba(11,27,51,0) 100%); text-shadow: 0 1px 6px rgba(0,0,0,0.45)">
+    <nav style="max-width: 1360px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="#home" style="display: flex; align-items: center; text-decoration: none"><img src="logo.png" alt="Geo Global Solutions LLC" style="height: 50px; width: auto; display: block; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.35))"></a>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; font-size: 13px; font-weight: 600">
+        <sc-for list="{{ nav }}" as="n">
+          <a href="{{ n.href }}" style="color: #FFFFFF; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px">{{ n.label }}</a>
+        </sc-for>
+        <div style="display: flex; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 4px">
+          <button type="button" onclick="{{ setEn }}" style="{{ enBtn }}">EN</button>
+          <button type="button" onclick="{{ setEs }}" style="{{ esBtn }}">ES</button>
+        </div>
+        <a href="#contact" style="background: #C8102E; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px">{{ t.getInTouch }}</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section style="position: relative; overflow: hidden; background: #0B1B33; color: #FFFFFF; min-height: 640px; display: flex; align-items: center">
+    <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; background: #0B1B33"><div class="ggs-slide ggs-s1"></div></div>
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,27,51,0.55) 0%, rgba(11,27,51,0.70) 60%, rgba(11,27,51,0.85) 100%)"></div>
+    <div class="ggs-heroin" style="position: relative; max-width: 1200px; width: 100%; margin: 0 auto; padding: 160px 24px 96px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+      <span class="ggs-up" style="font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5B700">{{ t.badge }}</span>
+      <h1 class="ggs-up ggs-d1" style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(38px, 6vw, 72px); line-height: 1.05; letter-spacing: -1px; text-transform: uppercase; max-width: 960px">{{ t.heroTitle }}</h1>
+      <p class="ggs-up ggs-d2" style="margin: 0; font-size: 19px; line-height: 1.6; color: #D6DEEA; max-width: 680px">{{ t.heroText }}</p>
+      <div class="ggs-up ggs-d3" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding-top: 8px">
+        <a href="#contact" class="ggs-pulse" style="background: #C8102E; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 16px; padding: 18px 32px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px">{{ t.heroCta }}</a>
+        <a href="#products" style="background: #FFFFFF; color: #0B1B33; text-decoration: none; font-weight: 700; font-size: 16px; padding: 18px 32px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px">{{ t.heroCta2 }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div style="background: #F5B700; color: #0B1B33; overflow: hidden; padding: 18px 0; border-top: 3px solid #0B1B33; border-bottom: 3px solid #0B1B33">
+    <div class="ggs-marquee">
+      <sc-for list="{{ marquee }}" as="m">
+        <span style="display: flex; align-items: center; gap: 28px; padding-right: 28px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; white-space: nowrap">{{ m }}<svg width="18" height="18" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="15" stroke="#C8102E" stroke-width="4"></circle></svg></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <section id="what-we-do" class="ggs-bg-wwd" style="position: relative; overflow: hidden; color: #FFFFFF; padding: 88px 24px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(11,27,51,0.80)"></div>
+    <div style="position: relative; max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px">
+      <div style="text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center">
+        <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 42px); text-transform: uppercase">{{ t.wwdTitle }}</h2>
+        <span style="width: 64px; height: 4px; background: #C8102E; border-radius: 2px"></span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px">
+        <sc-for list="{{ cards }}" as="c">
+          <div class="ggs-lift" style="{{ c.box }}">
+            <span style="{{ c.tag }}">{{ c.label }}</span>
+            <h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 28px; text-transform: uppercase">{{ c.title }}</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #E2E8F0">{{ c.text }}</p>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <sc-for list="{{ c.items }}" as="i">
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0A100" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>{{ i }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a href="{{ c.href }}" style="{{ c.btn }}">{{ c.cta }}</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER STATEMENT -->
+  <section class="ggs-bg-port" style="position: relative; overflow: hidden; color: #FFFFFF; padding: 96px 24px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(11,27,51,0.80)"></div>
+    <div style="position: relative; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+      <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(30px, 4.5vw, 48px); line-height: 1.15; text-transform: uppercase">{{ t.partnerTitle }}</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #C3CEDD; max-width: 720px">{{ t.partnerText }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; width: 100%">
+        <sc-for list="{{ t.pillars }}" as="p">
+          <div class="ggs-float" style="border: 1.5px solid #2A4268; border-radius: 10px; padding: 22px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 17px; text-transform: uppercase; color: #F5B700">{{ p }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="ggs-aboutimg" style="position: relative; overflow: hidden; padding: 112px 24px; color: #FFFFFF">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,27,51,0.78) 0%, rgba(11,27,51,0.88) 100%)"></div>
+    <div style="position: relative; max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+      <span style="font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5B700">{{ t.aboutKicker }}</span>
+      <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 42px); line-height: 1.15; text-transform: uppercase">{{ t.aboutTitle }}</h2>
+      <p style="margin: 0; color: #E2E8F0; font-size: 18px; line-height: 1.7">{{ t.aboutP1 }}</p>
+      <p style="margin: 0; color: #E2E8F0; font-size: 18px; line-height: 1.7">{{ t.aboutP2 }}</p>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION -->
+  <section class="ggs-bg-mission" style="position: relative; overflow: hidden; padding: 96px 24px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(11,27,51,0.80)"></div>
+    <div style="position: relative; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px">
+      <figure class="ggs-lift" style="margin: 0; background: transparent; border: 1.5px solid rgba(255,255,255,0.35); border-radius: 14px; padding: 40px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 64px; line-height: 0.6; color: #F5B700" aria-hidden="true">“</span>
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5B700">{{ t.missionLabel }}</span>
+        <blockquote style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 21px; line-height: 1.45; color: #FFFFFF">{{ t.mission }}</blockquote>
+      </figure>
+      <figure class="ggs-lift" style="margin: 0; background: transparent; border: 1.5px solid rgba(255,255,255,0.35); border-radius: 14px; padding: 40px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: Montserrat, sans-serif; font-weight: 900; font-size: 64px; line-height: 0.6; color: #F5B700" aria-hidden="true">“</span>
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5B700">{{ t.visionLabel }}</span>
+        <blockquote style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 21px; line-height: 1.45; color: #FFFFFF">{{ t.vision }}</blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="ggs-bg-food" style="position: relative; overflow: hidden; color: #FFFFFF; padding: 104px 24px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(11,27,51,0.78)"></div>
+    <div style="position: relative; max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px">
+      <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 720px">
+        <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 42px); text-transform: uppercase">{{ t.prodTitle }}</h2>
+        <span style="width: 64px; height: 4px; background: #C8102E; border-radius: 2px"></span>
+        <p style="margin: 0; color: #E2E8F0; font-size: 17px; line-height: 1.6">{{ t.prodText }}</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+        <sc-for list="{{ t.products }}" as="p">
+          <span class="ggs-chip" style="border: 1.5px solid #FFFFFF; background: rgba(255,255,255,0.10); border-radius: 999px; padding: 14px 22px; font-weight: 600; font-size: 16px">{{ p }}</span>
+        </sc-for>
+      </div>
+      <a href="#contact" style="background: #F5B700; color: #0B1B33; text-decoration: none; font-weight: 800; padding: 16px 28px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px">{{ t.askBrand }}</a>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section id="partners" class="ggs-bg-truck" style="position: relative; overflow: hidden; color: #FFFFFF; padding: 96px 24px 140px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(11,27,51,0.66)"></div>
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 40px; height: 4px; background: repeating-linear-gradient(90deg, #F5B700 0 28px, transparent 28px 52px); opacity: 0.5"></div>
+    <div aria-hidden="true" class="ggs-drive" style="position: absolute; left: 0; bottom: 44px">
+      <svg width="144" height="72" viewBox="0 0 96 48" fill="none" aria-hidden="true"><rect x="2" y="6" width="58" height="30" rx="3" fill="#F5B700"></rect><path d="M60 14h18l12 12v10H60z" fill="#FFFFFF"></path><rect x="66" y="18" width="12" height="8" rx="1" fill="#0B1B33"></rect><circle cx="20" cy="40" r="6" fill="#FFFFFF" stroke="#0B1B33" stroke-width="3"></circle><circle cx="74" cy="40" r="6" fill="#FFFFFF" stroke="#0B1B33" stroke-width="3"></circle><text x="31" y="20" text-anchor="middle" textLength="50" lengthAdjust="spacingAndGlyphs" fill="#0B1B33" font-family="Montserrat, sans-serif" font-weight="900" font-size="8">GEO GLOBAL</text><text x="31" y="29" text-anchor="middle" textLength="44" lengthAdjust="spacingAndGlyphs" fill="#0B1B33" font-family="Montserrat, sans-serif" font-weight="800" font-size="6.5">SOLUTIONS</text></svg>
+    </div>
+    <div style="position: relative; max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px">
+      <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5B700">{{ t.supKicker }}</span>
+        <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 42px); text-transform: uppercase">{{ t.supTitle }}</h2>
+        <p style="margin: 0; color: #C3CEDD; font-size: 17px; line-height: 1.6; max-width: 760px">{{ t.supText }}</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px">
+        <sc-for list="{{ t.steps }}" as="s">
+          <div class="ggs-lift" style="background: transparent; border: 1.5px solid rgba(255,255,255,0.35); border-radius: 14px; padding: 28px; text-shadow: 0 2px 8px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 12px; text-align: center; align-items: center">
+            <span class="ggs-ring" style="width: 56px; height: 56px; border-radius: 50%; background: #F5B700; color: #0B1B33; display: flex; align-items: center; justify-content: center; font-family: Montserrat, sans-serif; font-weight: 900; font-size: 22px; text-shadow: none">{{ s.n }}</span>
+            <h3 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase">{{ s.title }}</h3>
+            <p style="margin: 0; color: #FFFFFF; font-size: 15px; line-height: 1.6">{{ s.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="ggs-bg-plane" style="position: relative; overflow: hidden; color: #FFFFFF; padding: 96px 24px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(170,12,38,0.85)"></div>
+    <div style="position: relative; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px">
+      <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 900; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; text-transform: uppercase">{{ t.contactTitle }}</h2>
+      <p style="margin: 0; font-size: 19px; line-height: 1.6; color: #FFE5E9">{{ t.contactText }}</p>
+      <svg class="ggs-bob" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+      <a href="mailto:ceo@geoglobalsolutionsllc.com?subject=Business%20inquiry%20-%20Geo%20Global%20Solutions%20LLC" class="ggs-pulse-w" style="background: #FFFFFF; color: #C8102E; text-decoration: none; font-weight: 800; font-size: 17px; padding: 20px 36px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px">{{ t.emailUs }}</a>
+      <span style="font-size: 15px; color: #FFE5E9">{{ t.responseTime }}</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: #071326; color: #C3CEDD">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 64px 24px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <img src="logo.png" alt="Geo Global Solutions LLC" style="height: 52px; width: auto; align-self: flex-start; margin-bottom: 8px">
+        <h4 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #FFFFFF">{{ t.fContact }}</h4>
+        <div style="display: flex; align-items: center; gap: 10px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5B700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+          <a href="mailto:ceo@geoglobalsolutionsllc.com" style="color: #FFFFFF; font-size: 15px">ceo@geoglobalsolutionsllc.com</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5B700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+          <span>USA · Venezuela</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <h4 style="margin: 0 0 4px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #FFFFFF">{{ t.fLinks }}</h4>
+        <sc-for list="{{ nav }}" as="n">
+          <a href="{{ n.href }}" style="color: #C3CEDD; text-decoration: none; font-size: 15px">{{ n.label }}</a>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <h4 style="margin: 0 0 4px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #FFFFFF">{{ t.fServices }}</h4>
+        <sc-for list="{{ t.wwd }}" as="w">
+          <span style="font-size: 15px">{{ w }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px 24px 32px; border-top: 1px solid #1F3558; font-size: 13px; color: #8FA0B8">© 2026 Geo Global Solutions LLC · USA · Venezuela</div>
+  </footer>
+</div>
+</template>
+
+<script>
+(function () {
+  var T = {
+    en: {
+      nav: ['Home', 'About Us', 'What We Do', 'Our Products', 'Supplier Partnerships', 'Contact'],
+      getInTouch: 'Get in Touch',
+      badge: 'USA · Venezuela',
+      heroTitle: 'Connecting Markets. Building Opportunities.',
+      heroText: 'Your trusted partner in global trade, distribution and wholesale. We connect brands across the United States and ship from the USA to Venezuela.',
+      heroCta: "Let's Work Together", heroCta2: 'Our Products',
+      wwdTitle: 'What We Do',
+      wwd: ['Electronics', 'Consumer Goods', 'Packaged Foods', 'Supplier Partnerships'],
+      buyLabel: 'For buyers', buyTitle: 'Retailers & Importers',
+      buyText: 'U.S. retailers and Venezuelan importers and stores that need access to American brands.',
+      buyItems: ['Electronics', 'Consumer Goods', 'Packaged Foods', 'Case & pallet quantities'], buyCta: 'Request a quote',
+      supLabel: 'For suppliers', supCardTitle: 'Supplier Partnerships',
+      supCardText: 'Manufacturers, importers and authorized distributors looking for a long-term buyer.',
+      supItems: ['Recurring orders', 'Agreed payment terms', 'EIN & Texas resale certificate', 'On-time payment'], supCta: 'Become a partner',
+      partnerTitle: 'Your Global Wholesale Partner',
+      partnerText: 'We connect businesses with quality products and reliable suppliers around the world.',
+      pillars: ['Quality Products', 'Competitive Pricing', 'Long-Term Partnerships'],
+      aboutKicker: 'About Us', aboutTitle: 'Distribution and wholesale you can rely on',
+      aboutP1: 'Geo Global Solutions LLC is a distributor and wholesaler based in Arlington, Texas. We work with authorized U.S. distributors and brand suppliers, buying in case and pallet quantities.',
+      aboutP2: 'We connect brands with retailers across the United States, and with importers and stores in Venezuela that need American products, with simple purchasing, on-time payment and regular reordering.',
+      missionLabel: 'Our Mission', mission: 'Connect brands with your store, simply, on time and on the best terms.',
+      visionLabel: 'Our Vision', vision: 'Become a trusted supply partner between the United States and Latin America, known for reliable sourcing, honest dealings and long-term relationships.',
+      prodTitle: 'Our Products',
+      prodText: 'Everything is bought in original, sealed manufacturer packaging. Ask us about specific brands or items.',
+      products: ['Packaged foods & pantry', 'Coffee', 'Snacks', 'Gourmet & specialty foods', 'Household & cleaning', 'Personal care', 'Consumer electronics'],
+      askBrand: 'Ask about a brand',
+      supKicker: 'Supplier Partnerships', supTitle: 'How we work',
+      supText: 'We work with manufacturers, importers and authorized distributors on recurring orders and agreed payment terms. Business documents (EIN and Texas resale certificate) are available on request.',
+      steps: [
+        { n: 1, title: 'Send your request', text: 'Tell us the products, quantities and destination.' },
+        { n: 2, title: 'Get a quote', text: 'We confirm availability, pricing and delivery time.' },
+        { n: 3, title: 'Purchase & prepare', text: 'We buy from authorized suppliers and prepare the order in the U.S.' },
+        { n: 4, title: 'Delivery', text: 'We ship within the U.S. or coordinate export to Venezuela.' }
+      ],
+      contactTitle: "Let's grow together",
+      contactText: 'Suppliers, distributors and buyers: write to us directly. Contact us today.',
+      responseTime: 'We reply in about one business day',
+      emailUs: 'Email Us',
+      fContact: 'Contact', fLinks: 'Information', fServices: 'What We Do'
+    },
+    es: {
+      nav: ['Inicio', 'Nosotros', 'Qué hacemos', 'Productos', 'Proveedores', 'Contacto'],
+      getInTouch: 'Contáctanos',
+      badge: 'EE. UU. · Venezuela',
+      heroTitle: 'Conectando mercados. Creando oportunidades.',
+      heroText: 'Tu socio de confianza en comercio global, distribución y venta al mayor. Conectamos marcas dentro de Estados Unidos y enviamos de EE. UU. a Venezuela.',
+      heroCta: 'Trabajemos juntos', heroCta2: 'Nuestros productos',
+      wwdTitle: 'Qué hacemos',
+      wwd: ['Electrónicos', 'Bienes de consumo', 'Alimentos empacados', 'Alianzas con proveedores'],
+      buyLabel: 'Para compradores', buyTitle: 'Tiendas e importadores',
+      buyText: 'Tiendas en EE. UU. e importadores y comercios en Venezuela que necesitan acceso a marcas americanas.',
+      buyItems: ['Electrónicos', 'Bienes de consumo', 'Alimentos empacados', 'Por caja y por paleta'], buyCta: 'Pide tu cotización',
+      supLabel: 'Para proveedores', supCardTitle: 'Alianzas con proveedores',
+      supCardText: 'Fabricantes, importadores y distribuidores autorizados que buscan un comprador a largo plazo.',
+      supItems: ['Pedidos recurrentes', 'Condiciones de pago acordadas', 'EIN y certificado de reventa de Texas', 'Pagos puntuales'], supCta: 'Sé nuestro proveedor',
+      partnerTitle: 'Tu socio mayorista global',
+      partnerText: 'Conectamos empresas con productos de calidad y proveedores confiables en todo el mundo.',
+      pillars: ['Productos de calidad', 'Precios competitivos', 'Relaciones a largo plazo'],
+      aboutKicker: 'Nosotros', aboutTitle: 'Distribución y venta al mayor en la que puedes confiar',
+      aboutP1: 'Geo Global Solutions LLC es un distribuidor mayorista con base en Arlington, Texas. Trabajamos con distribuidores autorizados y proveedores de marcas en EE. UU., comprando por caja y por paleta.',
+      aboutP2: 'Conectamos marcas con tiendas en todo Estados Unidos, y con importadores y comercios en Venezuela que necesitan productos americanos, con compras sencillas, pagos puntuales y pedidos recurrentes.',
+      missionLabel: 'Misión', mission: 'Conectar marcas con tu tienda de manera sencilla, a tiempo y en las mejores condiciones.',
+      visionLabel: 'Visión', vision: 'Ser un socio de suministro de confianza entre Estados Unidos y Latinoamérica, reconocido por su abastecimiento confiable, su honestidad y sus relaciones a largo plazo.',
+      prodTitle: 'Nuestros productos',
+      prodText: 'Todo se compra en su empaque original y sellado de fábrica. Pregúntanos por marcas o artículos específicos.',
+      products: ['Alimentos empacados y despensa', 'Café', 'Snacks', 'Alimentos gourmet y especiales', 'Hogar y limpieza', 'Cuidado personal', 'Electrónicos de consumo'],
+      askBrand: 'Pregunta por una marca',
+      supKicker: 'Proveedores', supTitle: 'Cómo trabajamos',
+      supText: 'Trabajamos con fabricantes, importadores y distribuidores autorizados en pedidos recurrentes y con condiciones de pago acordadas. Tenemos disponibles documentos de la empresa (EIN y certificado de reventa de Texas).',
+      steps: [
+        { n: 1, title: 'Envía tu solicitud', text: 'Dinos los productos, las cantidades y el destino.' },
+        { n: 2, title: 'Recibe tu cotización', text: 'Confirmamos disponibilidad, precio y tiempo de entrega.' },
+        { n: 3, title: 'Compra y preparación', text: 'Compramos a proveedores autorizados y preparamos el pedido en EE. UU.' },
+        { n: 4, title: 'Entrega', text: 'Enviamos dentro de EE. UU. o coordinamos la exportación a Venezuela.' }
+      ],
+      contactTitle: 'Crezcamos juntos',
+      contactText: 'Proveedores, distribuidores y compradores: escríbannos directamente. Contáctanos hoy.',
+      responseTime: 'Respondemos en aproximadamente un día hábil',
+      emailUs: 'Escríbenos',
+      fContact: 'Contacto', fLinks: 'Información', fServices: 'Qué hacemos'
+    }
+  };
+
+  var hrefs = ['#home', '#about', '#what-we-do', '#products', '#partners', '#contact'];
+  var darkBox = 'background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.35); border-top: 6px solid #F5B700; border-radius: 16px; padding: 40px; display: flex; flex-direction: column; gap: 18px';
+  var lightBox = 'background: transparent; color: #FFFFFF; border: 1.5px solid rgba(255,255,255,0.35); border-top: 6px solid #C8102E; border-radius: 16px; padding: 40px; display: flex; flex-direction: column; gap: 18px';
+  var tagDark = 'align-self: flex-start; background: #F5B700; color: #0B1B33; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 8px 14px; border-radius: 4px';
+  var tagLight = 'align-self: flex-start; background: #FFFFFF; color: #0B1B33; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 8px 14px; border-radius: 4px';
+  var btnRed = 'margin-top: 8px; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 6px; background: #C8102E; color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px';
+  var btnNavy = 'margin-top: 8px; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 6px; background: #FFFFFF; color: #0B1B33; text-decoration: none; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px';
+  var on = 'border: none; border-radius: 999px; padding: 6px 12px; background: #FFFFFF; color: #0B1B33; font-weight: 700; font-size: 13px; cursor: pointer; min-height: 32px';
+  var off = 'border: none; border-radius: 999px; padding: 6px 12px; background: transparent; color: #FFFFFF; font-weight: 600; font-size: 13px; cursor: pointer; min-height: 32px';
+
+  var lang = 'en';
+  try {
+    var saved = localStorage.getItem('ggs-lang');
+    if (saved === 'en' || saved === 'es') lang = saved;
+    else if ((navigator.language || '').toLowerCase().indexOf('es') === 0) lang = 'es';
+  } catch (e) {
+    if ((navigator.language || '').toLowerCase().indexOf('es') === 0) lang = 'es';
+  }
+
+  function vals() {
+    var es = lang === 'es';
+    var t = es ? T.es : T.en;
+    return {
+      t: t,
+      nav: t.nav.map(function (label, i) { return { label: label, href: hrefs[i] }; }),
+      marquee: t.products.concat(t.products),
+      cards: [
+        { box: darkBox, tag: tagDark, label: t.buyLabel, title: t.buyTitle, text: t.buyText, items: t.buyItems, cta: t.buyCta, href: '#contact', btn: btnRed },
+        { box: lightBox, tag: tagLight, label: t.supLabel, title: t.supCardTitle, text: t.supCardText, items: t.supItems, cta: t.supCta, href: '#partners', btn: btnNavy }
+      ],
+      enBtn: es ? off : on, esBtn: es ? on : off,
+      setEn: function () { setLang('en'); },
+      setEs: function () { setLang('es'); }
+    };
+  }
+
+  function get(scope, path) {
+    return path.split('.').reduce(function (o, k) { return o == null ? undefined : o[k]; }, scope);
+  }
+  var HOLE = /\{\{\s*([\w.]+)\s*\}\}/g;
+  function interp(str, scope) {
+    return str.replace(HOLE, function (_, p) { var v = get(scope, p); return v == null ? '' : String(v); });
+  }
+
+  function process(node, scope) {
+    if (node.nodeType === 3) {
+      if (node.nodeValue.indexOf('{{') !== -1) node.nodeValue = interp(node.nodeValue, scope);
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    if (node.tagName.toLowerCase() === 'sc-for') {
+      var m = /\{\{\s*([\w.]+)\s*\}\}/.exec(node.getAttribute('list') || '');
+      var list = m ? get(scope, m[1]) : [];
+      var as = node.getAttribute('as');
+      var parent = node.parentNode;
+      (list || []).forEach(function (item) {
+        var sub = Object.assign({}, scope); sub[as] = item;
+        Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+          var c = child.cloneNode(true);
+          parent.insertBefore(c, node);
+          process(c, sub);
+        });
+      });
+      parent.removeChild(node);
+      return;
+    }
+    Array.prototype.slice.call(node.attributes).forEach(function (a) {
+      if (a.value.indexOf('{{') === -1) return;
+      if (a.name === 'onclick') {
+        var mm = /\{\{\s*([\w.]+)\s*\}\}/.exec(a.value);
+        var fn = mm && get(scope, mm[1]);
+        node.removeAttribute('onclick');
+        if (typeof fn === 'function') node.addEventListener('click', fn);
+      } else {
+        node.setAttribute(a.name, interp(a.value, scope));
+      }
+    });
+    Array.prototype.slice.call(node.childNodes).forEach(function (c) { process(c, scope); });
+  }
+
+  var tpl = document.getElementById('tpl');
+  var app = document.getElementById('app');
+  function render() {
+    var frag = tpl.content.cloneNode(true);
+    var scope = vals();
+    Array.prototype.slice.call(frag.childNodes).forEach(function (c) { process(c, scope); });
+    app.innerHTML = '';
+    app.appendChild(frag);
+    document.documentElement.lang = lang;
+  }
+  function setLang(l) {
+    lang = l;
+    try { localStorage.setItem('ggs-lang', l); } catch (e) {}
+    render();
+  }
+  render();
+})();
+</script>
+</body>
+</html>
