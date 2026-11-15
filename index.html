@@ -512,9 +512,9 @@ REGLAS:
 - Si preguntan algo que no tiene que ver con la empresa, explica con amabilidad que solo puedes ayudar con temas de Geo Global Solutions.
 - No uses formato markdown (sin asteriscos ni almohadillas).`;
 
-const MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3-flash-preview"];
+const MODELS = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-3-flash-preview"];
 let chat = null, modelIdx = 0;
-function newChat(){ chat = getGenerativeModel(ai, { model: MODELS[modelIdx], systemInstruction: SYSTEM, generationConfig: { maxOutputTokens: 400, temperature: 0.4 } }).startChat(); }
+function newChat(){ chat = getGenerativeModel(ai, { model: MODELS[modelIdx], systemInstruction: SYSTEM, generationConfig: { maxOutputTokens: 2048, temperature: 0.4 } }).startChat(); }
 newChat();
 
 const $ = id => document.getElementById(id);
