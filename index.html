@@ -439,5 +439,126 @@ html{scroll-behavior:smooth}
   render();
 })();
 </script>
+<!-- CHAT GEO GLOBAL (Gemini via Firebase AI Logic) -->
+<style>
+#ggc-btn{position:fixed;right:20px;bottom:20px;z-index:1000;width:62px;height:62px;border-radius:50%;border:none;background:#C8102E;color:#fff;box-shadow:0 10px 28px rgba(11,27,51,.35);cursor:pointer;display:flex;align-items:center;justify-content:center}
+#ggc-btn:hover{background:#A50D26}
+#ggc-panel{position:fixed;right:20px;bottom:94px;z-index:1000;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(11,27,51,.35);display:none;flex-direction:column;overflow:hidden;font-family:Inter,system-ui,sans-serif}
+#ggc-panel.open{display:flex}
+#ggc-head{background:#0B1B33;color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+#ggc-head strong{font-family:Montserrat,sans-serif;font-size:15px;letter-spacing:.3px}
+#ggc-head span{display:block;font-size:12px;color:#C3CEDD;margin-top:2px}
+#ggc-close{background:transparent;border:none;color:#fff;font-size:24px;line-height:1;cursor:pointer;min-width:44px;min-height:44px}
+#ggc-msgs{flex:1;overflow-y:auto;padding:14px;background:#F3F5F8;display:flex;flex-direction:column;gap:10px}
+.ggc-m{max-width:85%;padding:10px 13px;border-radius:14px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;color:#0B1B33}
+.ggc-bot{background:#fff;align-self:flex-start;border-bottom-left-radius:4px;box-shadow:0 1px 3px rgba(11,27,51,.08)}
+.ggc-me{background:#0B1B33;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.ggc-m a{color:#C8102E}
+.ggc-me a{color:#F5B700}
+#ggc-form{display:flex;gap:8px;padding:10px;border-top:1px solid #E6EAF0;background:#fff}
+#ggc-in{flex:1;border:1.5px solid #CBD3DF;border-radius:10px;padding:11px 12px;font-size:15px;font-family:inherit;color:#0B1B33;min-height:44px}
+#ggc-in:focus{outline:none;border-color:#0B1B33}
+#ggc-send{background:#C8102E;color:#fff;border:none;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;min-height:44px}
+#ggc-send:disabled{opacity:.5;cursor:default}
+#ggc-note{font-size:11px;color:#5B6577;padding:0 12px 10px;background:#fff}
+</style>
+<button id="ggc-btn" type="button" aria-label="Abrir chat / Open chat" aria-expanded="false" aria-controls="ggc-panel">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</button>
+<section id="ggc-panel" role="dialog" aria-label="Chat Geo Global Solutions">
+  <div id="ggc-head">
+    <div><strong>Geo Global Solutions</strong><span id="ggc-sub">Asistente virtual</span></div>
+    <button id="ggc-close" type="button" aria-label="Cerrar chat / Close chat">×</button>
+  </div>
+  <div id="ggc-msgs" aria-live="polite"></div>
+  <form id="ggc-form">
+    <label for="ggc-in" style="position:absolute;left:-9999px">Mensaje</label>
+    <input id="ggc-in" type="text" autocomplete="off" maxlength="500" placeholder="Escribe tu pregunta…">
+    <button id="ggc-send" type="submit">Enviar</button>
+  </form>
+  <div id="ggc-note">Asistente con IA (Gemini). Puede equivocarse. No compartas datos personales ni de pago.</div>
+</section>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app-check.js";
+import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-ai.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC9baQbtgQqHhNGDcP5LjHeLEl_iAHmPTc",
+  authDomain: "geoglobal-chat.firebaseapp.com",
+  projectId: "geoglobal-chat",
+  storageBucket: "geoglobal-chat.firebasestorage.app",
+  messagingSenderId: "886400642339",
+  appId: "1:886400642339:web:d2f4c878ddce9dfafcb096"
+};
+const app = initializeApp(firebaseConfig);
+initializeAppCheck(app, { provider: new ReCaptchaEnterpriseProvider("6LfVEyEuAAAAAI8LcqkxbTmrSsfYp0ZF7-zIDazH"), isTokenAutoRefreshEnabled: true });
+const ai = getAI(app, { backend: new GoogleAIBackend() });
+
+const SYSTEM = `Eres el asistente virtual de la página web de Geo Global Solutions LLC.
+DATOS DE LA EMPRESA (usa solo esto):
+- Distribuidor mayorista con base en Arlington, Texas, EE. UU.
+- Trabaja con distribuidores autorizados y proveedores de marcas en EE. UU.; compra por caja y por paleta.
+- Conecta marcas con tiendas en todo Estados Unidos, y con importadores y comercios en Venezuela que necesitan productos americanos.
+- Categorías: alimentos empacados y despensa, café, snacks, alimentos gourmet y especiales, hogar y limpieza, cuidado personal, electrónicos de consumo. Todo en empaque original y sellado de fábrica.
+- Cómo hacer un pedido: 1) el cliente envía productos, cantidades y destino; 2) recibe una cotización con disponibilidad, precio y tiempo de entrega; 3) la empresa compra a proveedores autorizados y prepara el pedido en EE. UU.; 4) envía dentro de EE. UU. o coordina la exportación a Venezuela.
+- Proveedores: trabaja con fabricantes, importadores y distribuidores autorizados en pedidos recurrentes y con condiciones de pago acordadas; tiene EIN y certificado de reventa de Texas.
+- Contacto: ceo@geoglobalsolutionsllc.com. Responden en aproximadamente un día hábil.
+REGLAS:
+- Responde en el mismo idioma del visitante (español o inglés), de forma breve, amable y profesional (2 a 5 frases).
+- NUNCA inventes precios, tarifas de envío, tiempos exactos, stock, marcas disponibles, descuentos ni promesas. Para cotizaciones, precios, disponibilidad o pedidos, pide que escriban a ceo@geoglobalsolutionsllc.com con productos, cantidades y destino.
+- No des asesoría legal, aduanal ni fiscal; sugiere consultarlo con la empresa por correo.
+- No pidas ni aceptes datos personales, de pago ni contraseñas.
+- Si preguntan algo que no tiene que ver con la empresa, explica con amabilidad que solo puedes ayudar con temas de Geo Global Solutions.
+- No uses formato markdown (sin asteriscos ni almohadillas).`;
+
+const MODELS = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3-flash-preview"];
+let chat = null, modelIdx = 0;
+function newChat(){ chat = getGenerativeModel(ai, { model: MODELS[modelIdx], systemInstruction: SYSTEM, generationConfig: { maxOutputTokens: 400, temperature: 0.4 } }).startChat(); }
+newChat();
+
+const $ = id => document.getElementById(id);
+const btn=$("ggc-btn"), panel=$("ggc-panel"), msgs=$("ggc-msgs"), form=$("ggc-form"), inp=$("ggc-in"), send=$("ggc-send");
+const isEs = () => (document.documentElement.lang || "en").startsWith("es");
+const T = () => isEs()
+  ? { hi:"¡Hola! Soy el asistente de Geo Global Solutions. Pregúntame sobre nuestros productos, cómo hacer un pedido o los envíos a EE. UU. y Venezuela.", ph:"Escribe tu pregunta…", send:"Enviar", sub:"Asistente virtual", err:"Lo siento, no pude responder ahora. Escríbenos a ceo@geoglobalsolutionsllc.com y te contestamos pronto.", wait:"Escribiendo…", note:"Asistente con IA (Gemini). Puede equivocarse. No compartas datos personales ni de pago." }
+  : { hi:"Hi! I'm the Geo Global Solutions assistant. Ask me about our products, how to place an order, or shipping within the USA and to Venezuela.", ph:"Type your question…", send:"Send", sub:"Virtual assistant", err:"Sorry, I couldn't answer right now. Email us at ceo@geoglobalsolutionsllc.com and we'll get back to you soon.", wait:"Typing…", note:"AI assistant (Gemini). It may make mistakes. Don't share personal or payment details." };
+
+function esc(s){ return s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function linkify(s){ return esc(s).replace(/([\w.+-]+@[\w-]+\.[\w.]+)/g,'<a href="mailto:$1">$1</a>'); }
+function add(text, who){ const d=document.createElement("div"); d.className="ggc-m "+(who==="me"?"ggc-me":"ggc-bot"); d.innerHTML=linkify(text); msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
+function applyLang(){ const t=T(); inp.placeholder=t.ph; send.textContent=t.send; $("ggc-sub").textContent=t.sub; $("ggc-note").textContent=t.note; }
+
+let greeted=false;
+btn.addEventListener("click", () => {
+  const open = !panel.classList.contains("open");
+  panel.classList.toggle("open", open);
+  btn.setAttribute("aria-expanded", String(open));
+  if (open) { applyLang(); if(!greeted){ add(T().hi,"bot"); greeted=true; } inp.focus(); }
+});
+$("ggc-close").addEventListener("click", () => { panel.classList.remove("open"); btn.setAttribute("aria-expanded","false"); btn.focus(); });
+
+let count=0;
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const q = inp.value.trim(); if(!q || send.disabled) return;
+  if (++count > 30) { add(T().err,"bot"); return; }
+  add(q,"me"); inp.value=""; send.disabled=true;
+  const w = add(T().wait,"bot");
+  for (let attempt=0; attempt<MODELS.length; attempt++) {
+    try {
+      const r = await chat.sendMessage(q);
+      w.innerHTML = linkify(r.response.text().replace(/[*#]/g,"").trim());
+      break;
+    } catch (err) {
+      console.warn("ggc", MODELS[modelIdx], err);
+      if (modelIdx < MODELS.length-1 && /not found|404|unsupported|not supported/i.test(String(err))) { modelIdx++; newChat(); continue; }
+      w.innerHTML = linkify(T().err); break;
+    }
+  }
+  send.disabled=false; msgs.scrollTop=msgs.scrollHeight; inp.focus();
+});
+</script>
+<!-- /CHAT GEO GLOBAL -->
 </body>
 </html>
